@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import DropDown from './dropdown'
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DropDown />
   </React.StrictMode>,
   document.getElementById('root')
 );
