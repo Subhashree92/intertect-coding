@@ -6,13 +6,15 @@ export default class DropDown extends React.Component{
         this.state = {
             countries: [],
             colours: {},
-            query:''
+            query:'',
+            filterData:[]
         };
     }
     handleInputChange = () => {
         this.setState({
           query: this.search.value
         })
+        this.filterArray();
       }
     componentDidMount() {
         this.setState({
@@ -23,6 +25,17 @@ export default class DropDown extends React.Component{
                 {id: 'AUG', name: 'Austarila'},
             ]
         });
+    }
+    filterArray = () => {
+        var searchString = this.state.query;
+        var responseData = this.state.countries
+        if(searchString.length > 0){
+            // console.log(responseData[i].name);
+            responseData = responseData.filter(l => {
+                console.log( l.name.toLowerCase().match(searchString));
+            })
+            this.setState({filterData:responseData})
+        }
     }
     render() {
         const { countries } = this.state;
@@ -52,6 +65,13 @@ export default class DropDown extends React.Component{
             </div>
             </div>
             </div>
+            <div>
+                    {
+                        this.state.filterData.map((i) =>
+                            <p>{i.name}</p>
+                        )
+                    }
+                </div>
             </div>
         );
     
